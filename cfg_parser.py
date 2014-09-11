@@ -12,7 +12,7 @@ def parse(path):
 
     # tuples
     for section in cfg.sections():
-        return_dict[section] = cfg.items(section)
+        return_dict[section.lower()] = cfg.items(section)
 
     fp.close()
 
