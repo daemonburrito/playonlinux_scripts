@@ -1,9 +1,9 @@
-"""Convenient layer over ConfigParser to make cfgs into dicts."""
-import argparse
-import ConfigParser
+#!/usr/bin/env python
+"""Compare configs, and return common and each unique config."""
 
 def parse(path):
     """Return a dict based on the config file."""
+    import ConfigParser
     fp = open(path)
     cfg = ConfigParser.ConfigParser()
     cfg.readfp(fp)
@@ -41,20 +41,7 @@ def compare(cfgs=[]):
             for opt in cfgs[i][section]:
                 common_dict[section].intersection_update({t for t in cfgs[i][section]})
 
-    # find the union of all key/value pairs by section
-    union_dict = {}
-    union_dict_sections = set()
-    for cfg in cfgs:
-        for section in cfg.keys():
-            union_dict_sections.add(section)
-    for section in union_dict_sections:
-        union_dict[section] = set()
-    for cfg in cfgs:
-        for section, opts in cfg.items():
-            for opt in opts:
-                union_dict[section].add(opt)
-
-    # compare each config against union
+    # compare each config against common
     diffs = []
     for cfg in cfgs:
         diff = {}
@@ -70,6 +57,22 @@ def compare(cfgs=[]):
 
     return {
         "common": common_dict,
-        #"union": union_dict,
         "cfgs": diffs
     }
+
+def main():
+    import argparse
+    import pprint
+
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('config_paths', metavar='[path]', nargs='+', help='path to a config file')
+    args = parser.parse_args()
+
+    paths = vars(args)['config_paths']
+
+    res = compare(cfgs=[parse(path) for path in paths])
+    pprint.pprint(res)
+
+
+if __name__ == "__main__":
+    main()
