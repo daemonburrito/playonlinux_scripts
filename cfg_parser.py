@@ -66,12 +66,69 @@ def main():
 
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('config_paths', metavar='[path]', nargs='+', help='path to a config file')
-    args = parser.parse_args()
+    parser.add_argument('-o', '--output', help='output format', choices=['ini', 'configcom'], default='default')
+    args = vars(parser.parse_args())
 
-    paths = vars(args)['config_paths']
+    paths = args['config_paths']
+    out_format = args['output']
 
     res = compare(cfgs=[parse(path) for path in paths])
-    pprint.pprint(res)
+
+    def ini(res):
+        s = ''
+
+        s += '** Global config **\n'
+        for section, opts in res['common'].items():
+            s += '[{}]\n'.format(section)
+            for opt in opts:
+                s += '{}={}\n'.format(opt[0], opt[1])
+            s += '\n'
+
+        n = 1
+        for cfg in res['cfgs']:
+            s += '** Config {} **\n'.format(n)
+
+            for section, opts in cfg.items():
+                s += '[{}]\n'.format(section)
+                for opt in opts:
+                    s += '{}={}\n'.format(section, opt[0], opt[1])
+                s += '\n'
+            s += '\n'
+            n += 1
+        print s
+
+    def configcom(res):
+        s = ''
+
+        s += '** Global config **\n'
+        for section, opts in res['common'].items():
+            s += '[{}]\n'.format(section)
+            for opt in opts:
+                s += '{}={}\n'.format(opt[0], opt[1])
+            s += '\n'
+
+        n = 1
+        for cfg in res['cfgs']:
+            s += '** Config {} **\n'.format(n)
+
+            for section, opts in cfg.items():
+                for opt in opts:
+                    s += 'CONFIG -set "{} {}={}"\n'.format(section, opt[0], opt[1])
+
+            s += '\n'
+            n += 1
+        print s
+
+    def pprinter(res):
+        pprint.pprint(res)
+
+    formatters = {
+        'ini': ini,
+        'configcom': configcom,
+        'default': pprinter
+    }
+
+    formatters[out_format](res)
 
 
 if __name__ == "__main__":
