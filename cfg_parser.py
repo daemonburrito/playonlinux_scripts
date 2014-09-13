@@ -100,16 +100,16 @@ def main():
     def configcom(res):
         s = ''
 
-        s += '** Global config **\n'
+        s += '** Global config ($WINEPREFIX/playonlinux_dos.cfg) **\n'
         for section, opts in res['common'].items():
-            s += '[{}]\n'.format(section)
+            #s += '[{}]\n'.format(section)
             for opt in opts:
-                s += '{}={}\n'.format(opt[0], opt[1])
+                s += '{}_{}={}\n'.format(section, opt[0], opt[1])
             s += '\n'
 
         n = 1
         for cfg in res['cfgs']:
-            s += '** Config {} **\n'.format(n)
+            s += '** Config {} (Batch file heredoc) **\n'.format(n)
 
             for section, opts in cfg.items():
                 for opt in opts:
