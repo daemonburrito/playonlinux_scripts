@@ -58,40 +58,21 @@ speaker_disney=true
 speaker_pcspeaker=true
 speaker_tandy=auto
 
-sdl_autolock=true
 sdl_fullresolution=desktop
-sdl_waitonerror=true
-sdl_priority=higher,normal
 sdl_fullscreen=true
-sdl_sensitivity=100
-sdl_fulldouble=false
-sdl_usescancodes=true
-
-dos_xms=true
-dos_ems=true
-dos_umb=true
+sdl_output=overlay
 
 joystick_joysticktype=auto
 joystick_swap34=false
 joystick_autofire=false
 joystick_timed=true
 
-ipx_enable=0
-ipx_ipx=false
-ipx_connection=0
-
 serial_serial3=disabled
 serial_serial4=disabled
 serial_serial2=dummy
 serial_serial1=dummy
 
-dosbox_captures=capture
-dosbox_machine=svga_s3
-dosbox_memsize=16
-
-render_scaler=normal2x
-render_aspect=false
-render_frameskip=0
+render_aspect=true
 _EOFCFG_
 
 [ "$POL_OS" = "Linux" ] && echo "render_scaler=hq2x" >> "$WINEPREFIX/playonlinux_dos.cfg"
@@ -114,10 +95,6 @@ CONFIG -set "mixer rate=22050"
 CONFIG -set "mixer blocksize=2048"
 CONFIG -set "speaker pcrate=22050"
 CONFIG -set "speaker tandyrate=22050"
-CONFIG -set "sdl mapperfile=mapper.txt"
-CONFIG -set "sdl output=Overlay"
-CONFIG -set "sdl aspect=false"
-CONFIG -set "sdl windowresolution=Original"
 CONFIG -set "dos keyboardlayout=none"
 CONFIG -set "joystick buttonwrap=true"
 CONFIG -set "cpu cycleup=50"
@@ -144,10 +121,7 @@ CONFIG -set "gus gusbase=240"
 CONFIG -set "gus gusdma=3"
 CONFIG -set "speaker pcrate=44100"
 CONFIG -set "speaker tandyrate=44100"
-CONFIG -set "sdl windowresolution=original"
 CONFIG -set "sdl mapperfile=mapper.map"
-CONFIG -set "sdl output=overlay"
-CONFIG -set "dos keyboardlayout=auto"
 CONFIG -set "joystick buttonwrap=false"
 CONFIG -set "cpu core=simple"
 CONFIG -set "cpu cycleup=500"
@@ -174,10 +148,7 @@ CONFIG -set "gus gusbase=240"
 CONFIG -set "gus gusdma=3"
 CONFIG -set "speaker pcrate=44100"
 CONFIG -set "speaker tandyrate=44100"
-CONFIG -set "sdl windowresolution=original"
 CONFIG -set "sdl mapperfile=mapper.map"
-CONFIG -set "sdl output=overlay"
-CONFIG -set "dos keyboardlayout=auto"
 CONFIG -set "joystick buttonwrap=false"
 CONFIG -set "cpu cycleup=500"
 CONFIG -set "cpu core=simple"
