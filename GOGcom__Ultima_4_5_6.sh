@@ -1,3 +1,11 @@
+# Date : (2014-09-13 7-30)
+# Last revision : (2014-09-13 3-30)
+# Wine version used : 1.6.2-dos_support_0.6
+# Distribution used to test : Ubuntu
+# Author : daemonburrito, demonburrito at gmail dot com
+# Script licence : GPL v.2
+# Program licence : Retail
+# Depend :
 [ "$PLAYONLINUX" = "" ] && exit 0
 source "$PLAYONLINUX/lib/sources"
 
