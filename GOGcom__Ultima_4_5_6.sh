@@ -87,7 +87,6 @@ ln -s "$GAME_DIR3" "$GAME_DIR3_SHORT"
 # Batch file launcher for Ultima 4
 cat <<_EOFBAT_ > "$GOGROOT/$INSTALL_DIR/$GAME_DIR1_SHORT/$BAT1"
 @ECHO OFF
-CONFIG -set "midi device=default"
 CONFIG -set "sblaster mixer=true"
 CONFIG -set "sblaster oplrate=22050"
 CONFIG -set "mixer prebuffer=10"
@@ -107,7 +106,6 @@ _EOFBAT_
 # Batch file launcher for Ultima 5
 cat <<_EOFBAT_ > "$GOGROOT/$INSTALL_DIR/$GAME_DIR2_SHORT/$BAT2"
 @ECHO OFF
-CONFIG -set "midi mididevice=default"
 CONFIG -set "sblaster oplrate=44100"
 CONFIG -set "sblaster sbmixer=true"
 CONFIG -set "sblaster oplemu=default"
@@ -134,7 +132,6 @@ _EOFBAT_
 # Batch file launcher for Ultima 6
 cat <<_EOFBAT_ > "$GOGROOT/$INSTALL_DIR/$GAME_DIR3_SHORT/$BAT3"
 @ECHO OFF
-CONFIG -set "midi mididevice=default"
 CONFIG -set "sblaster oplrate=44100"
 CONFIG -set "sblaster sbmixer=true"
 CONFIG -set "sblaster oplemu=default"
